@@ -5,8 +5,8 @@
 							http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
 	<persistence-unit name="mercurio">
 		<properties>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/health" />
-			<property name="javax.persistence.jdbc.password" value="passport" />
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/BANCO_DATABASE" />
+			<property name="javax.persistence.jdbc.password" value="SENHA_PASSWD" />
 			<property name="javax.persistence.jdbc.user" value="postgres" />		
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver" />
 			<property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect" />
