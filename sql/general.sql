@@ -133,7 +133,6 @@ CREATE TABLE address (
 	complement VARCHAR(255),
 	street VARCHAR(10) NOT NULL,
 	trash BOOLEAN NOT NULL DEFAULT 'FALSE',
-	CONSTRAINT address_x_enterprise FOREIGN KEY (enterprise) REFERENCES enterprise (code),
 	CONSTRAINT address_x_people FOREIGN KEY (people) REFERENCES people (code),
 	CONSTRAINT address_x_street FOREIGN KEY (street) REFERENCES street (code),
 	CHECK ( code >= '0')
@@ -183,7 +182,6 @@ CREATE TABLE contacts (
 	phone VARCHAR(255) NOT NULL,
 	cellphone VARCHAR(255) NOT NULL,
 	trash BOOLEAN NOT NULL DEFAULT 'FALSE',  
-	CONSTRAINT contacts_x_enterprise FOREIGN KEY (enterprise) REFERENCES enterprise (code),
 	CONSTRAINT contacts_x_people FOREIGN KEY (people) REFERENCES people (code), -- INSERINDO AO TERMINAR SQL
 	CHECK ( code >= '0')
 );
