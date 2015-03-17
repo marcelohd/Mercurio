@@ -96,19 +96,6 @@ CREATE TABLE street (
 );
 COMMENT ON TABLE street IS 'Tabela das Ruas';
 
--- CRIANDO SEQUENCE RAÇA
-CREATE SEQUENCE race_sequence INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 99 CACHE 1 NO CYCLE;
-COMMENT ON SEQUENCE race_sequence  IS 'Sequencia das Raças';
-
--- CRIANDO TABELA DE RAÇA
-CREATE TABLE race (
-	code VARCHAR(2) NOT NULL PRIMARY KEY UNIQUE DEFAULT lpad(nextval('race_sequence')::VARCHAR(2),2,'0'),
-	name VARCHAR(255) NOT NULL UNIQUE,
-	trash BOOLEAN NOT NULL DEFAULT 'FALSE', 
-	CHECK ( code >= '0')
-);
-COMMENT ON TABLE race IS 'Tabela das Raças';
-
 -- CRIANDO SEQUENCE DO NIVEL ESCOLAR 
 CREATE SEQUENCE scholarity_sequence INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 99 CACHE 1 NO CYCLE;
 COMMENT ON SEQUENCE scholarity_sequence  IS 'Sequencia das Escolaridade';
@@ -134,87 +121,6 @@ CREATE TABLE marital (
 	CHECK ( code >= '0')
 );
 COMMENT ON TABLE marital IS 'Tabela das Estado Civil';
-
--- CRIANDO SEQUENCE DE EMPRESAS
-CREATE SEQUENCE enterprise_sequence INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 999 CACHE 1 NO CYCLE;
-COMMENT ON SEQUENCE enterprise_sequence  IS 'Sequencia das empresas';
-
--- CRIANDO TABELA DE EMPRESAS
-CREATE TABLE enterprise (
-	code VARCHAR(3) NOT NULL PRIMARY KEY UNIQUE DEFAULT lpad(nextval('enterprise_sequence')::VARCHAR(3),3,'0'),
-	corporate_name VARCHAR(255) NOT NULL,
-	fantasy VARCHAR(255),	
-	street VARCHAR(10) NOT NULL,
-	phone VARCHAR(20),
-	mail VARCHAR(45),
-	trash BOOLEAN NOT NULL DEFAULT 'FALSE',
-	CONSTRAINT enterprise_x_street FOREIGN KEY (street) REFERENCES street (code),
-	CHECK ( code >= '0')
-);
-COMMENT ON TABLE enterprise IS 'Tabela da Empresas';
-COMMENT ON COLUMN enterprise.corporate_name IS 'Razão Social';
-COMMENT ON COLUMN enterprise.fantasy IS 'Nome Fantasia';
-
--- CRIANDO SEQUENCE DE PESSOAS
-CREATE SEQUENCE people_sequence INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9999999999 CACHE 1 NO CYCLE;
-COMMENT ON SEQUENCE people_sequence  IS 'Sequencia das pessoas';
-
--- CRIANDO TABELA DE PESSOAS
-CREATE TABLE people (
-	enterprise VARCHAR(3) NOT NULL,
-	code VARCHAR(10) NOT NULL PRIMARY KEY UNIQUE DEFAULT lpad(nextval('people_sequence')::VARCHAR(10),10,'0'),
-	name VARCHAR(255) NOT NULL,
-	mother VARCHAR(255),
-	father VARCHAR(255),
-	cpf VARCHAR(15) UNIQUE,
-	rg VARCHAR(10) UNIQUE,
-	cardsus VARCHAR(20) UNIQUE NOT NULL,
-	scholarity VARCHAR(2) NOT NULL,
-	race  VARCHAR(2) NOT NULL,
-	marital  VARCHAR(2) NOT NULL,	 
-	databirth  TIMESTAMP NOT NULL,
-	trash BOOLEAN NOT NULL DEFAULT 'FALSE',
-	CONSTRAINT people_x_enterprise FOREIGN KEY (enterprise) REFERENCES enterprise (code),
-	CONSTRAINT people_x_marital FOREIGN KEY (marital) REFERENCES marital (code),
-	CONSTRAINT people_x_race FOREIGN KEY (race) REFERENCES race (code),
-	CONSTRAINT people_x_scholarity FOREIGN KEY (scholarity) REFERENCES scholarity (code),
-	CHECK ( code >= '0')
-);
-COMMENT ON TABLE people IS 'Tabela da pessoas';
-
--- CRIANDO SEQUENCE DE TIPOS DE FUNCIONARIOS
-CREATE SEQUENCE type_employee_sequence INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 99 CACHE 1 NO CYCLE;
-COMMENT ON SEQUENCE type_employee_sequence  IS 'Sequencia dos tipos de funcionarios';
-
--- CRIANDO TABELA DE TIPOS DE FUNCIONARIOS
-CREATE TABLE type_employee (
-	code VARCHAR(2) NOT NULL PRIMARY KEY UNIQUE DEFAULT lpad(nextval('type_employee_sequence')::VARCHAR(2),2,'0'),
-	name VARCHAR(255) NOT NULL,
-	trash BOOLEAN NOT NULL DEFAULT 'FALSE',
-	CHECK ( code >= '0')
-);
-COMMENT ON TABLE type_employee IS 'Tabela dos Tipos de Funcionarios, Cargos';
-
--- CRIANDO SEQUENCE DE FUNCIONARIOS 
-CREATE SEQUENCE employee_sequence INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9999 CACHE 1 NO CYCLE;
-COMMENT ON SEQUENCE employee_sequence  IS 'Sequencia dos Funcionarios';
-
--- CRIANDO TABELA DE FUNCIONARIOS
-CREATE TABLE employee (
-	code VARCHAR(4) NOT NULL PRIMARY KEY UNIQUE DEFAULT lpad(nextval('employee_sequence')::VARCHAR(4),4,'0'),
-	enterprise VARCHAR(3) NOT NULL,	
-	people VARCHAR(10) NOT NULL,
-	register VARCHAR (15) NOT NULL,
-	type_employe VARCHAR(2) NOT NULL,
-	trash BOOLEAN NOT NULL DEFAULT 'FALSE',
-	CONSTRAINT employee_x_enterprise FOREIGN KEY (enterprise) REFERENCES enterprise (code),
-	CONSTRAINT employee_x_people FOREIGN KEY (people) REFERENCES people (code),
-	CONSTRAINT employee_x_type_employe FOREIGN KEY (type_employe) REFERENCES type_employee (code),
-	CHECK ( code >= '0')
-);
-COMMENT ON TABLE employee IS 'Tabela dos Funcionarios, Cargos';
-COMMENT ON COLUMN employee.register IS 'Numero de Registro do Profissional';
-COMMENT ON COLUMN employee.type_employe IS 'Tipo de profissional';
 
 -- CRIANDO SEQUENCE DE ENDEREÇOS
 CREATE SEQUENCE address_sequence INCREMENT 1 START 1 MINVALUE 1 MAXVALUE 9999999999 CACHE 1 NO CYCLE;
