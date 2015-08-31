@@ -21,13 +21,13 @@ public class CountryParseXml {
 		CountryBean bean = new CountryBean();
 		
 		Object[] botoes = { "Sim", "Nao" };  
-		int resposta = JOptionPane.showOptionDialog(null,  
+	/*	int resposta = JOptionPane.showOptionDialog(null,  
 		        "Deseja inserir",  
 		        "Alimentar Banco", // o  
 		        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
 		        botoes, botoes[0]);  
 		  
-		if(resposta == 0){  
+		if(resposta == 0){  */
 			try{
 				File fileXML = new File("xml/pais.xml");
 				DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -54,8 +54,8 @@ public class CountryParseXml {
 			}catch(Exception e){
 				e.printStackTrace();
 			} 
-		}else if(resposta == 1){  
+	/*	}else if(resposta == 1){  
 		    JOptionPane.showMessageDialog(null, "Nao");  
-		}
+		}*/
 	}
 }
