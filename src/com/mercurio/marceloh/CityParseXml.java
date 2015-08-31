@@ -24,12 +24,12 @@ public class CityParseXml {
 	CityBean bean = new CityBean();
 	
 	Object[] botoes = { "Sim", "Não" };  
-	//int resposta = JOptionPane.showOptionDialog(null,  
-	      //  "Deseja inserir as Cidades?",  
-	      //  "Alimentar Banco", // 
-	       // JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,  botoes, botoes[0]);  
+	/*int resposta = JOptionPane.showOptionDialog(null,  
+	        "Deseja inserir as Cidades?",  
+	       "Alimentar Banco", // 
+	       JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,  botoes, botoes[0]);  
 	  
-	//if(resposta == 0){  
+	if(resposta == 0){  */
 		try{
 			File fileXML = new File("xml/municipio.xml");
 			DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -55,10 +55,10 @@ public class CityParseXml {
 			}			
 		}catch(Exception e){
 			e.printStackTrace();
-		} 
-	//}else if(resposta == 1){  
-	//    JOptionPane.showMessageDialog(null, "NãO");  
-	//}
+		} /*
+	}else if(resposta == 1){  
+	    JOptionPane.showMessageDialog(null, "NãO");  
+	}*/
 }
 
 }
