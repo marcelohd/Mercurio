@@ -40,7 +40,7 @@ public class CityParseXml {
 			
 			//System.out.println("Root element :" + document.getDocumentElement().getNodeName());
 			NodeList nodeList = document.getElementsByTagName("MUNICIPIO");
-			
+			// Lendo do arquivo salvando no banco
 			for(int temp = 0; temp < nodeList.getLength(); temp ++ ){
 				Node node = nodeList.item(temp);
 				if (node.getNodeType() == Node.ELEMENT_NODE) {
