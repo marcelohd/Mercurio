@@ -19,14 +19,14 @@ public class StateParseXml {
 		State state = new State();
 		StateBean bean = new StateBean();
 		
-		Object[] botoes = { "Sim", "Não" };  
-		int resposta = JOptionPane.showOptionDialog(null,  
+		Object[] botoes = { "Sim", "NÃ£o" };  
+	/*	int resposta = JOptionPane.showOptionDialog(null,  
 		        "Deseja inserir os Estados?",  
-		        "Alimentar Banco", // o t�tulo da janela  
+		        "Alimentar Banco", // o tï¿½tulo da janela  
 		        JOptionPane.DEFAULT_OPTION, JOptionPane.QUESTION_MESSAGE, null,  
 		        botoes, botoes[0]);  
 		  
-		if(resposta == 0){  
+		if(resposta == 0){  */
 			try{
 				File fileXML = new File("xml/sguf.xml");
 				DocumentBuilderFactory builderFactory = DocumentBuilderFactory.newInstance();
@@ -53,9 +53,9 @@ public class StateParseXml {
 			}catch(Exception e){
 				e.printStackTrace();
 			} 
-		}else if(resposta == 1){  
-		    JOptionPane.showMessageDialog(null, "N�o");  
-		}
+	/*	}else if(resposta == 1){  
+		    JOptionPane.showMessageDialog(null, "Não");  
+		}*/
 	}
 
 }
