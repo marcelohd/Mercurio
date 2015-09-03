@@ -1,4 +1,4 @@
-# Mercurio for PostgreSQL
+# Mercurio
 Mercurio é nada mais do que um alimentador de banco de dados SQL  
 que lê os dados de um arquivo XML e faz a inserção no banco de dados usando JPA Hibernate.
 
